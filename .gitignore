@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.idea/
+其他/
+node_modules/
+*.log
