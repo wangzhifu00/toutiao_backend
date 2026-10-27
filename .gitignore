@@ -3,6 +3,6 @@ __pycache__/
 *.pyc
 .env
 .idea/
-其他/
+docs/
 node_modules/
 *.log

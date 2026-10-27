@@ -1,6 +1,6 @@
 # 新闻资讯平台后端（toutiao_backend）
 
-基于 **FastAPI + MySQL + Redis** 的新闻资讯平台后端服务，并提供配套前端（Vue 3 + Vite）联调。涵盖新闻浏览、用户体系、收藏与浏览历史，针对高频读取场景引入 Redis 缓存，并接入通义千问大模型实现流式 AI 问答。
+基于 **FastAPI + MySQL + Redis** 的新闻资讯平台后端服务，涵盖新闻浏览、用户体系、收藏与浏览历史，针对高频读取场景引入 Redis 缓存。项目另配前端（Vue 3 + Vite）用于联调，其中 AI 问答由**前端直连** OpenAI 兼容接口（通义千问）实现流式输出，**该链路不经过本后端**。
 
 ## 技术栈
 
@@ -10,8 +10,8 @@
 | 数据库 | MySQL 8.0（SQLAlchemy 2.0 异步 + aiomysql） |
 | 缓存 | Redis（Cache-Aside 模式，分级 TTL） |
 | 鉴权 | UUID Token + bcrypt 密码哈希 |
-| 大模型 | 通义千问（OpenAI 兼容接口，SSE 流式） |
-| 前端 | Vue 3 + Vite + Pinia（联调用） |
+| 前端 | Vue 3 + Vite + Pinia（联调用，非本仓库代码） |
+| 大模型 | 前端直连通义千问（OpenAI 兼容接口 + SSE 流式，后端不参与） |
 
 ## 架构
 
@@ -21,7 +21,7 @@ graph LR
     B -->|REST API| C[FastAPI 后端 :8000]
     C -->|SQLAlchemy 异步| D[(MySQL :3306)]
     C -->|读写缓存| E[(Redis :6379)]
-    C -->|SSE 流式| F[通义千问 API]
+    B -.->|SSE 直连，不经过后端| F[通义千问 API]
 ```
 
 ## 项目结构
