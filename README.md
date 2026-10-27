@@ -36,6 +36,7 @@ toutiao_backend/
 ├── routers/             # 接口层：news / users / favorite / history
 ├── cache/               # 缓存工具函数（JSON 序列化 + TTL）
 ├── utils/               # 鉴权依赖、统一响应、异常处理、加密
+├── docs/                # 接口规范文档、数据库 SQL 脚本
 ├── .env.example         # 环境变量模板（真实值不提交）
 └── requirements.txt
 ```
@@ -57,7 +58,7 @@ cp .env.example .env
 
 ```bash
 pip install -r requirements.txt
-# 导入 SQL 脚本创建 news_app 库及表结构（见项目 SQL 文件）
+# 导入 docs/02-数据库sql文件/database.sql，创建 news_app 库及表结构
 ```
 
 ### 4. 启动
